@@ -18,7 +18,7 @@ private:
     double a, b, c, disk;
 
 };
-
+//ввод числа с проверкой 
 double getNum(const string text)
 {
     string chislo;
@@ -27,11 +27,11 @@ double getNum(const string text)
     while (true)
     {
         cin >> chislo;
-        replace(chislo.begin(), chislo.end(), ',', '.');
+        replace(chislo.begin(), chislo.end(), ',', '.'); //инициализация чисел с запятой (замена запятой на точку)
         value = stod(chislo);
         if (cin.fail())
         {
-            cout << "ШАЛИШЬ!!! Вводи заново :)\n" << text;
+            cout << "Error!!! Enter again, Kirill :)\n" << text;
             cin.clear();
             cin.ignore(1000, '\n');
             continue;
@@ -43,10 +43,10 @@ double getNum(const string text)
 Equations::Equations()
 {
     
-    cout << "Введите коэффициенты для уравнения ax^2 + bx + c = 0" << endl;
-    this->a = getNum("Введите коэффициент a = ");
-    this->b = getNum("Введите коэффициент b = ");
-    this->c = getNum("Введите коэффициент c = ");
+    cout << "Enter index ax^2 + bx + c = 0" << endl;
+    this->a = getNum("Enter index a = ");
+    this->b = getNum("Enter index b = ");
+    this->c = getNum("Enter index c = ");
     this->disk = 0;
 }
 
@@ -63,15 +63,15 @@ bool Equations::prov_1()
         {
             if (c == 0)
             {
-                cout << "Решений нет" << endl;
+                cout << "No solutions" << endl;
                 return false;
             }
-            cout << "Бесконечность решений" << endl;
+            cout << "Many solutions" << endl;
             return false;
         }
         double x;
         x = -c / b;
-        cout << "Решение уравнения x = " << x << endl;
+        cout << "Solution x = " << x << endl;
         return false;
     }
     return true;
@@ -81,20 +81,20 @@ void Equations::prov_disk()
 {
     if (this->disk < 0)
     {
-        cout << "Решений нет" << endl;
+        cout << "No solutions" << endl;
         return;
     }
     if (this->disk == 0)
     {
         double x = (-b) / (2 * a);
-        cout << "Корень уравнения x = " << x << endl;
+        cout << "Solution  x = " << x << endl;
         return;
     }
     if (this->disk > 0)
     {
         double x1 = (-b - sqrt(disk)) / (2 * a);
         double x2 = (-b + sqrt(disk)) / (2 * a);
-        cout << "Корни уравнения x1 = " << x1 << " и x2 = " << x2 << endl;
+        cout << "Solutions  x1 = " << x1 << " и x2 = " << x2 << endl;
         return;
     }
 }
@@ -104,7 +104,6 @@ void Equations::prov_disk()
 int main()
 {
     
-    setlocale(LC_ALL, "Rus");
     Equations a;
     
     if (!a.prov_1())
