@@ -1,6 +1,10 @@
 ﻿#include <iostream>
 #include <cmath>
 #include <string>
+#include <locale>
+#include <sstream>
+#include <algorithm>
+
 
 using namespace std;
 
@@ -19,11 +23,14 @@ private:
 
 double getNum(const string text)
 {
+    string chislo;
     double value;
     cout << text;
     while (true)
     {
-        cin >> value;
+        cin >> chislo;
+        replace(chislo.begin(), chislo.end(), ',', '.');
+        value = stod(chislo);
         if (cin.fail())
         {
             cout << "ШАЛИШЬ!!! Вводи заново :)\n" << text;
@@ -37,6 +44,7 @@ double getNum(const string text)
 
 Equations::Equations()
 {
+    
     cout << "Введите коэффициенты для уравнения ax^2 + bx + c = 0" << endl;
     this->a = getNum("Введите коэффициент a = ");
     this->b = getNum("Введите коэффициент b = ");
@@ -97,11 +105,10 @@ void Equations::prov_disk()
 
 int main()
 {
-    setlocale(LC_ALL, "ru_RU.utf8");
+    
     setlocale(LC_ALL, "Rus");
-
     Equations a;
-
+    
     if (!a.prov_1())
         return 0;
     a.diskr();
