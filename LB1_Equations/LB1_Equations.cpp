@@ -17,16 +17,16 @@ private:
 
 };
 
-int getNum(const string teext)
+double getNum(const string text)
 {
-    int value;
-    cout << teext;
+    double value;
+    cout << text;
     while (true)
     {
         cin >> value;
         if (cin.fail())
         {
-            cout << "ШАЛИШЬ!!! Вводи заново :)\n" << teext;
+            cout << "ШАЛИШЬ!!! Вводи заново :)\n" << text;
             cin.clear();
             cin.ignore(1000, '\n');
             continue;
@@ -97,6 +97,7 @@ void Equations::prov_disk()
 
 int main()
 {
+    setlocale(LC_ALL, "ru_RU.utf8");
     setlocale(LC_ALL, "Rus");
 
     Equations a;
