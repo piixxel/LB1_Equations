@@ -23,10 +23,7 @@ double getValue(string text)
         {
             if (value[i] == ',')
                 value[i] = '.';
-        }
 
-        for (int i = 0; i < length; i++) //проверка на буквы
-        {
             if (!((value[i] >= '0' && value[i] <= '9') || value[i] == '.' || value[i] == '-'))
             {
                 boo = false;
