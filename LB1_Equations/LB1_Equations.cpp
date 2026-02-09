@@ -5,45 +5,46 @@
 
 using namespace std;
 
-//валидация
+bool validate(string value)
+{
+    int length;
+    length = value.size();
+
+    for (int i = 0; i < length; i++) //проверка на запятую
+    {
+        if (value[i] == ',')
+            value[i] = '.';
+
+        if (!((value[i] >= '0' && value[i] <= '9') || value[i] == '.' || value[i] == '-'))
+        {
+            cout << "Error! Try again" << endl;
+            return false;
+        }
+    }
+    return true;
+}
+
 double getValue(string text)
 {
     string value;
-    int length;
-    bool boo;
-    
+            
     while (true)
     {
         cout << text;
         cin >> value;
-        boo = true;
-        length = value.size();
-
-        for (int i = 0; i < length; i++) //проверка на запятую
+               
+        if (!validate(value))
         {
-            if (value[i] == ',')
-                value[i] = '.';
-
-            if (!((value[i] >= '0' && value[i] <= '9') || value[i] == '.' || value[i] == '-'))
-            {
-                boo = false;
-                cout << "Error! Try again" << endl;
-                break;
-            }
+            continue;
         }
-
-        if (boo)
-        {
-            break;
-        }
-           
+        return stod(value);
     }
-    return stod(value);
+    
 }
 
 
 // проверка аргументов
-bool provDisk(double a, double b, double c) 
+bool validateDisk(double a, double b, double c) 
 {
     if (a == 0)
     {
@@ -60,7 +61,7 @@ bool provDisk(double a, double b, double c)
 }
 
 //подсчет корней
-void itog(double a, double b, double c)
+void result(double a, double b, double c)
 {
     double disk = (pow(b, 2)) - (4 * a * c);
 
@@ -92,12 +93,13 @@ int main()
     double a = getValue("Enter value a = ");
     double b = getValue("Enter value b = ");
     double c = getValue("Enter value c = ");
-    if (!provDisk(a, b, c))
+
+    if (!validateDisk(a, b, c))
     {
         return 0;
     }
        
-    itog(a,b,c);
+    result(a,b,c);
 
     return 0;
 }
