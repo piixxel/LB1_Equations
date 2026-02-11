@@ -24,13 +24,13 @@ bool validate(string value)
     return true;
 }
 
-double getValue(string text)
+double getValue(string msg)
 {
     string value;
             
     while (true)
     {
-        cout << text;
+        cout << msg;
         cin >> value;
                
         if (!validate(value))
